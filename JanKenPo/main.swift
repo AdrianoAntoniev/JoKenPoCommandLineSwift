@@ -42,6 +42,9 @@ while !ehNumeroValidoEntreZeroEDois {
             let itemCPU = possiveisJogadas[respostaDaCPU]
             let itemUsuario = possiveisJogadas[respostaDoUsuarioEmInteiro]
             
+            print("Sua jogada: \(itemUsuario.nome)")
+            print("Jogada da CPU: \(itemCPU.nome)")
+            
             print("RESULTADO......")
             print(itemUsuario.verificaVitoria(contra: itemCPU.nome))
         }
