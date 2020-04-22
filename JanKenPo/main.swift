@@ -17,12 +17,13 @@ struct Item {
         if self.nome == oponente{
             return "empate"
         } else if self.ganhaDe == oponente {
-            return "Usuario venceu, pois \(self.nome) ganha de \(oponente)!"
+            return "Voce venceu, pois \(self.nome) ganha de \(oponente)!"
         }
         
         return "Computador venceu, pois \(oponente) ganha de \(self.nome)"
     }
 }
+
 
 let pedra = Item(nome: "pedra", ganhaDe: "tesoura", perdePara: "papel")
 let papel = Item(nome: "papel", ganhaDe: "pedra", perdePara: "tesoura")
@@ -41,11 +42,18 @@ while !ehNumeroValidoEntreZeroEDois {
             let respostaDaCPU = Int.random(in: 0...2)
             let itemCPU = possiveisJogadas[respostaDaCPU]
             let itemUsuario = possiveisJogadas[respostaDoUsuarioEmInteiro]
+                        
+            print("Jo")
+            sleep(1)
+            print("Ken")
+            sleep(1)
+            print("Po!")
+            sleep(1)
             
-            print("Sua jogada: \(itemUsuario.nome)")
+            print("\nSua jogada: \(itemUsuario.nome)")
             print("Jogada da CPU: \(itemCPU.nome)")
             
-            print("RESULTADO......")
+            print("\nRESULTADO......")
             print(itemUsuario.verificaVitoria(contra: itemCPU.nome))
         }
     }
