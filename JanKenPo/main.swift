@@ -8,52 +8,47 @@
 
 import Foundation
 
-func jogadorVenceu(entre jogador: String, e oponente: String) -> Bool {
-    switch jogador {
-    case "j":
-        if oponente == "p" {
-            return true
-        } else {
-            return false
-        }
-    case "k":
-        if oponente == "j" {
-            return true
-        } else {
-            return false
-        }
-    case "p":
-        if oponente == "k" {
-            return true
-        } else {
-            return false
+struct Item {
+    let nome: String
+    let ganhaDe: String
+    let perdePara: String
+    
+    func verificaVitoria(contra oponente: String) -> String {
+        if self.nome == oponente{
+            return "empate"
+        } else if self.ganhaDe == oponente {
+            return "Usuario venceu, pois \(self.nome) ganha de \(oponente)!"
         }
         
-    default:
-        return false
+        return "Computador venceu, pois \(oponente) ganha de \(self.nome)"
     }
 }
 
-print("JAN KEN PO")
-print("Digite j para pedra, k para papel ou po para tesoura")
-let op = readLine()
+let pedra = Item(nome: "pedra", ganhaDe: "tesoura", perdePara: "papel")
+let papel = Item(nome: "papel", ganhaDe: "pedra", perdePara: "tesoura")
+let tesoura = Item(nome: "tesoura", ganhaDe: "papel", perdePara: "pedra")
+let possiveisJogadas = [pedra, papel, tesoura]
 
-let opcoes = ["j", "k", "p"]
-let opcaoOponente = opcoes[Int.random(in: 0...2)]
+print("JO KEN PO")
+print("Digite 0 para pedra, 1 para papel ou 2 para tesoura")
 
-if let opcao = op {
-    if opcoes.contains(opcao) {
-        if opcao == opcaoOponente {
-            print("Empate! \(opcao) vs \(opcaoOponente)")
-        } else {
-            if jogadorVenceu(entre: opcao, e: opcaoOponente) {
-                print("Voce Venceu! \(opcao) vs \(opcaoOponente)")
-            } else {
-                print("Oponente Venceu! \(opcaoOponente) vs \(opcao)")
-            }
+var ehNumeroValidoEntreZeroEDois = false
+while !ehNumeroValidoEntreZeroEDois {
+    let respostaDoUsuario = readLine()!
+    
+    if let respostaDoUsuarioEmInteiro = Int(respostaDoUsuario) {
+        if respostaDoUsuarioEmInteiro < 3 || respostaDoUsuarioEmInteiro > -1 {
+            let respostaDaCPU = Int.random(in: 0...2)
+            let itemCPU = possiveisJogadas[respostaDaCPU]
+            let itemUsuario = possiveisJogadas[respostaDoUsuarioEmInteiro]
+            
+            print("RESULTADO......")
+            print(itemUsuario.verificaVitoria(contra: itemCPU.nome))
         }
     }
 }
+
+
 
 
 
